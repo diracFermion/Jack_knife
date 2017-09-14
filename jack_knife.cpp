@@ -1,4 +1,4 @@
-/*	Error Analysis using Jack Knife Method	*/
+/*	Error Analysis using Jack Knife Method		*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,7 +63,7 @@ char read_line[1024];
 int main( int argc, char **argv )
 {
  
-  char *param_file = argv[2];//"../System_33_34/Epsi_800.0_Kappa_10.0/Strip_11/Disp_0.0001/Temp_1.0/parameter_jk.dat";
+  char *param_file = argv[2];
   printf("Parameter file : %s\n",param_file); 
   /*	Logging toggle to print to terminal	*/
   LOGGING=atoi(argv[3]);
