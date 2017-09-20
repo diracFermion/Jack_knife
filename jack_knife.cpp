@@ -22,8 +22,8 @@ char observable_file[1024],time_evolution_dir[1024],time_evolution_file[1024];
 double raw_data[MAXRUNS][MAXMES],jk_blocks[MAXLOG][MAXRUNS+1];
 double sum_log2_bin;
 double log2_bin[MAXRUNS][MAXLOG],step_log2[MAXLOG];
-double jk_avg[5][MAXLOG];
-double error[5][MAXLOG],error_term1[5][MAXLOG],error_term2[5][MAXLOG];
+double jk_avg[NUMOBSER][MAXLOG];
+double error[NUMOBSER][MAXLOG],error_term1[NUMOBSER][MAXLOG],error_term2[NUMOBSER][MAXLOG];
 char read_line[1024];
 
 
@@ -45,12 +45,12 @@ int log2_single_observable_time_evolution(int data_size,int run_size,char dumpFi
 	printf("HOOMD dumpFile inside function=%s\n",dumpFile);
 	printf("Data_Size=%d,run_size=%d\n",data_size,run_size);
         int RUN,log_bin_cnt;
-	double raw_observable[5];
+	double raw_observable[NUMOBSER];
 	unsigned long long read_step;
         log_bin_cnt=log(double(data_size))/log(2);
 
    /*      Creating 2D array with raw observable data */
-   for(int iobser=0;iobser<5;iobser++)
+   for(int iobser=0;iobser<NUMOBSER;iobser++)
    {     
 	for(RUN=0;RUN<JK_BIN_COUNT;RUN++)
         {
