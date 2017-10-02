@@ -1,10 +1,10 @@
 #define MAXLOG 200
 #define MAXRUNS 501
 #define MAXMES  100000
-#define NUMOBSER 1
+#define NUMOBSER 8
 
 /*      Observable variables    */
-extern int DATA_COUNT,BIN_SIZE,JK_BIN_COUNT;
+extern int DATA_COUNT,BIN_SIZE,JK_BIN_COUNT,RUNS;
 extern char parameter_file[1024],result_file[1024];
 extern FILE *Finput,*Fresult;
 extern int NX,NY,STEPS,PERIOD,STRIP_SIZE,DATA_DISCARD,LOGGING,LINEARBIN,LOG2BIN;

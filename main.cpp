@@ -18,7 +18,7 @@
 #include "jack_knife.h"
 
 
-int DATA_COUNT,BIN_SIZE,JK_BIN_COUNT;
+int DATA_COUNT,BIN_SIZE,JK_BIN_COUNT,RUNS;
 char parameter_file[1024],result_file[1024];
 FILE *Finput,*Fresult;
 int NX,NY,STEPS,PERIOD,STRIP_SIZE,DATA_DISCARD,LOGGING,LINEARBIN,LOG2BIN;
@@ -26,19 +26,17 @@ double EPSILON,KAPPA,k_bT,DISP;
 
 int main( int argc, char **argv )
 {
- 
-  char *param_file = argv[2];
-  printf("Parameter file : %s\n",param_file); 
+  char param_file[256],dumpFile[256]; 
+
+
+  //char *param_file = argv[2];
+  sprintf(param_file,"parameter.dat");
+  printf("Parameter file : %s\n",param_file);
+
+     
 
   /*	Logging toggle to print to terminal	*/
-  LOGGING=atoi(argv[3]);
-
-  /*    Linear Binning toggle     */
-  LINEARBIN=atoi(argv[4]);
-
-  /*    Log2 Binning toggle     */
-  LOG2BIN=atoi(argv[5]);
-
+  LOGGING=atoi(argv[1]);
 
   /*	Reading the parameter file	*/
   Finput=fopen(param_file,"r");
@@ -62,13 +60,15 @@ int main( int argc, char **argv )
   fgets(parameter_file,1024,Finput);
   sscanf(parameter_file,"k_BT %lf",&k_bT);
   fgets(parameter_file,1024,Finput);
+  sscanf(parameter_file,"RUNS %d",&RUNS);
   fclose(Finput); 
   
   
   /*	Total MD Steps and Jack Knife Bin Count	*/
   DATA_COUNT = STEPS/PERIOD;
-  JK_BIN_COUNT = atoi(argv[1]);/*	 Number of runs (each run is a block)	*/
-
+  //JK_BIN_COUNT = atoi(argv[1]);/*	 Number of runs (each run is a block)	*/
+  JK_BIN_COUNT = RUNS;
+ 
   /*    Printing read paramater.dat data        */
   if (LOGGING == 1)
   {
@@ -82,6 +82,7 @@ int main( int argc, char **argv )
 	  printf("KAPPA\t%f \n",KAPPA);
 	  printf("DATA_COUNT\t%d \n",DATA_COUNT);
 	  printf("JK_BIN_COUNT\t%d \n",JK_BIN_COUNT);
+	  printf("RUNS\t%d\n",RUNS);
   }
 
  /*	Opening the output file for Simulation Average and Error        */
@@ -95,13 +96,12 @@ int main( int argc, char **argv )
  fclose(Fresult);
 */
  /*	Error Analysis Function Calls	*/
- char dumpFile[]="observable.log";
- printf("HOOMD dumpFile=%s\n",dumpFile);
+// char dumpFile[]="observable.log";
+ sprintf(dumpFile,"../Sim_dump_ribbon/TE_L%d_W%d_k%.1f.log",NX,NY,KAPPA);
+ printf("Time Evolution of observables, dumpFile=%s\n",dumpFile);
 
- if (LOG2BIN==1)
- {
- 	log2_single_observable_time_evolution(DATA_COUNT,JK_BIN_COUNT,dumpFile);
- }
+ log2_single_observable_time_evolution(DATA_COUNT,JK_BIN_COUNT,dumpFile);
+ 
  return 0;
 
 }

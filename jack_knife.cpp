@@ -42,7 +42,7 @@ char read_line[1024];
 int log2_single_observable_time_evolution(int data_size,int run_size,char dumpFile[])
 {
         FILE *Finput,*Foutput;
-	printf("HOOMD dumpFile inside function=%s\n",dumpFile);
+	printf("Time Evolution dumpFile inside function=%s\n",dumpFile);
 	printf("Data_Size=%d,run_size=%d\n",data_size,run_size);
         int RUN,log_bin_cnt;
 	double raw_observable[NUMOBSER];
@@ -54,7 +54,7 @@ int log2_single_observable_time_evolution(int data_size,int run_size,char dumpFi
    {     
 	for(RUN=0;RUN<JK_BIN_COUNT;RUN++)
         {
-                sprintf(observable_file,"../Sim_dump_frame/Frame_%d/E_%.1f_K_%.2f_S_%d_R_%d/%s",NX,EPSILON,KAPPA,STRIP_SIZE,RUN+1,dumpFile);
+                sprintf(observable_file,"../Sim_dump_ribbon/L%d_W%d_k%.1f_r%d.log",NX,NY,KAPPA,RUN+1);
                 //printf("Observable Input File:%s\n",observable_file);
 		Finput=fopen(observable_file,"r");
                 if (Finput==NULL)
@@ -62,7 +62,7 @@ int log2_single_observable_time_evolution(int data_size,int run_size,char dumpFi
                 fgets(read_line, 1024,Finput); //Skip first line
                 for(int j=0;j<data_size;j++)
                 {
-			fscanf(Finput,"%llu\t%lf\t%lf\t%lf\t%lf\t%lf\n",&read_step,raw_observable,raw_observable+1,raw_observable+2,raw_observable+3,raw_observable+4);
+			fscanf(Finput,"%llu\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",&read_step,raw_observable,raw_observable+1,raw_observable+2,raw_observable+3,raw_observable+4,raw_observable+5,raw_observable+6,raw_observable+7);
 			raw_data[RUN][j]=raw_observable[iobser];
 			raw_step[j]=read_step;
 		}
@@ -219,25 +219,26 @@ int log2_single_observable_time_evolution(int data_size,int run_size,char dumpFi
 
         /*      Writing time evolution of observable to file    */
         
-	sprintf(time_evolution_file,"../Sim_dump_frame/Frame_%d/time_evolution.log",NX);
+	//sprintf(time_evolution_file,"../Sim_dump_ribon/evol_L%d_W%d_k%.1f.log",NX,NY,KAPPA);
         if(LOGGING == 1)
         {
                 printf("Log2 Time Evolution Output File: %s\n",time_evolution_file);
         }
 
-        Foutput = fopen(time_evolution_file, "a");
+        Foutput = fopen(dumpFile, "a");
         if (Foutput == NULL)
         {
-                print_and_exit("***************Could Not Open Log2 Time Evolution Output File: %s************************",time_evolution_file);
+                print_and_exit("***************Could Not Open Log2 Time Evolution Output File: %s************************",dumpFile);
         }
 
+	fprintf(Foutput,"LogSteps\tDihedral_Bending_Energy\tErr Bond_Harmonic_Energy\tErr    Potential_Energy\tErr        Delta_Backbone\tErr  Avg_hgt\tErr Avg_hgt_Sq\tErr      Avg_Slider_Pos\tErr	Delta_Slider\tErr\n");
         for(int i=0;i<log_bin_cnt;i++)
         {
                 if(LOGGING == 1)
                 {
-                        printf("%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
+                        printf("%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
                 }
-                fprintf(Foutput,"%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
+                fprintf(Foutput,"%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
         }
         fclose(Foutput);
 
