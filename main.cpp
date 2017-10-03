@@ -31,7 +31,7 @@ int main( int argc, char **argv )
 
   //char *param_file = argv[2];
   sprintf(param_file,"parameter.dat");
-  printf("Parameter file : %s\n",param_file);
+  //printf("Parameter file : %s\n",param_file);
 
      
 
@@ -97,10 +97,10 @@ int main( int argc, char **argv )
 */
  /*	Error Analysis Function Calls	*/
 // char dumpFile[]="observable.log";
- sprintf(dumpFile,"../Sim_dump_ribbon/TE_L%d_W%d_k%.1f.log",NX,NY,KAPPA);
- printf("Time Evolution of observables, dumpFile=%s\n",dumpFile);
+ //sprintf(dumpFile,"../Sim_dump_ribbon/TE_L%d_W%d_k%.1f.log",NX,NY,KAPPA);
+ //printf("Time Evolution of observables, dumpFile=%s\n",dumpFile);
 
- log2_single_observable_time_evolution(DATA_COUNT,JK_BIN_COUNT,dumpFile);
+ log2_single_observable_time_evolution(DATA_COUNT,JK_BIN_COUNT);
  
  return 0;
 

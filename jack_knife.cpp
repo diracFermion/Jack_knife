@@ -39,11 +39,11 @@ char read_line[1024];
 
  /*	LOG2 BINNING TIME EVOLUTION	*/
 
-int log2_single_observable_time_evolution(int data_size,int run_size,char dumpFile[])
+int log2_single_observable_time_evolution(int data_size,int run_size)
 {
         FILE *Finput,*Foutput;
-	printf("Time Evolution dumpFile inside function=%s\n",dumpFile);
-	printf("Data_Size=%d,run_size=%d\n",data_size,run_size);
+	//printf("Time Evolution dumpFile inside function=%s\n",dumpFile);
+	//printf("Data_Size=%d,run_size=%d\n",data_size,run_size);
         int RUN,log_bin_cnt;
 	double raw_observable[NUMOBSER];
 	unsigned long long read_step;
@@ -225,22 +225,20 @@ int log2_single_observable_time_evolution(int data_size,int run_size,char dumpFi
                 printf("Log2 Time Evolution Output File: %s\n",time_evolution_file);
         }
 
-        Foutput = fopen(dumpFile, "a");
+/*        Foutput = fopen(dumpFile, "a");
         if (Foutput == NULL)
         {
                 print_and_exit("***************Could Not Open Log2 Time Evolution Output File: %s************************",dumpFile);
         }
+*/
+	printf("Log2Bin#\tLogSteps\tDihedral_Bending_Energy\tErr Bond_Harmonic_Energy\tErr    Potential_Energy\tErr        Delta_Backbone\tErr  Avg_hgt\tErr Avg_hgt_Sq\tErr      Avg_Slider_Pos\tErr	Delta_Slider\tErr\n");
 
-	fprintf(Foutput,"LogSteps\tDihedral_Bending_Energy\tErr Bond_Harmonic_Energy\tErr    Potential_Energy\tErr        Delta_Backbone\tErr  Avg_hgt\tErr Avg_hgt_Sq\tErr      Avg_Slider_Pos\tErr	Delta_Slider\tErr\n");
         for(int i=0;i<log_bin_cnt;i++)
         {
-                if(LOGGING == 1)
-                {
                         printf("%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
-                }
-                fprintf(Foutput,"%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
+                //fprintf(Foutput,"%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
         }
-        fclose(Foutput);
+        //fclose(Foutput);
 
 return 0;
 }
