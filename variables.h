@@ -1,7 +1,7 @@
 #define MAXLOG 200
 #define MAXRUNS 501
 #define MAXMES  100000
-#define NUMOBSER 8
+#define NUMOBSER 5
 
 /*      Observable variables    */
 extern int DATA_COUNT,BIN_SIZE,JK_BIN_COUNT,RUNS;
