@@ -54,7 +54,7 @@ int log2_single_observable_time_evolution(int data_size,int run_size)
    {     
 	for(RUN=0;RUN<JK_BIN_COUNT;RUN++)
         {
-                sprintf(observable_file,"../Sim_dump_ribbon/obser_L%d_W%d_k%.1f_r%d.log",NX,NY,KAPPA,RUN+1);
+                sprintf(observable_file,"../Sim_dump_ribbon/L%d/W%d/k%.1f/r%d/obser_thermal.log",NX,NY,KAPPA,RUN+1);
                 //printf("Observable Input File:%s\n",observable_file);
 		Finput=fopen(observable_file,"r");
                 if (Finput==NULL)
@@ -231,11 +231,11 @@ int log2_single_observable_time_evolution(int data_size,int run_size)
                 print_and_exit("***************Could Not Open Log2 Time Evolution Output File: %s************************",dumpFile);
         }
 */
-	printf("Log2Bin#\tLogSteps\ttemperature\tError\tpotential_energy\terror\tbond_harmonic_energy\terror\tkinetic_energy\terror\tdihedral_harmonic_energy\terror\tNX\tNY\tEPSILON\tKAPPA\tSTRIP_SIZE\tk_bT\n");
+	printf("Log2Bin#\tLogSteps\ttemperature_3\tError\tpotential_energy_5\terror\tbond_harmonic_energy_7\terror\tkinetic_energy_9\terror\tdihedral_harmonic_energy_11\terror\tNX_13\tNY_14\tEPSILON_15\tKAPPA_16\tk_bT_17\n");
 
         for(int i=0;i<log_bin_cnt;i++)
         {
-                        printf("%d\t%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
+                        printf("%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,k_bT);
                 //fprintf(Foutput,"%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
         }
         //fclose(Foutput);
