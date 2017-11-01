@@ -36,7 +36,13 @@ int main( int argc, char **argv )
      
 
   /*	Logging toggle to print to terminal	*/
-  LOGGING=atoi(argv[1]);
+  switch (argc){
+   case 2:
+       LOGGING=atoi(argv[1]);
+       break;
+   default:
+       print_and_exit("Usage Pass command line arguments 0 or 1 for LOGGING and change parameter.dat  \n");
+   }
 
   /*	Reading the parameter file	*/
   Finput=fopen(param_file,"r");

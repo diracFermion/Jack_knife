@@ -54,7 +54,7 @@ int log2_single_observable_time_evolution(int data_size,int run_size)
    {     
 	for(RUN=0;RUN<JK_BIN_COUNT;RUN++)
         {
-                sprintf(observable_file,"../Sim_dump_ribbon/L%d_W%d_k%.1f_r%d.log",NX,NY,KAPPA,RUN+1);
+                sprintf(observable_file,"../Sim_dump_ribbon/L%d/W%d/k%.1f/r%d/analyze.log",NX,NY,KAPPA,RUN+1);
                 //printf("Observable Input File:%s\n",observable_file);
 		Finput=fopen(observable_file,"r");
                 if (Finput==NULL)
@@ -231,7 +231,7 @@ int log2_single_observable_time_evolution(int data_size,int run_size)
                 print_and_exit("***************Could Not Open Log2 Time Evolution Output File: %s************************",dumpFile);
         }
 */
-	printf("Log2Bin#\tLogSteps\tDihedral_Bending_Energy\tErr Bond_Harmonic_Energy\tErr    Potential_Energy\tErr        Delta_Backbone\tErr  Avg_hgt\tErr Avg_hgt_Sq\tErr      Avg_Slider_Pos\tErr	Delta_Slider\tErr\n");
+	printf("Log2Bin#\tLogSteps\tDihedral_Bending_Energy_3\tErr Bond_Harmonic_Energy_5\tErr    Potential_Energy_7\tErr        Delta_Backbone_9\tErr  Avg_hgt_11\tErr Avg_hgt_Sq_13\tErr      Avg_Slider_Pos_15\tErr	Delta_Slider_17\tErr\n");
 
         for(int i=0;i<log_bin_cnt;i++)
         {
