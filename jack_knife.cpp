@@ -231,11 +231,11 @@ int log2_single_observable_time_evolution(int data_size,int run_size)
                 print_and_exit("***************Could Not Open Log2 Time Evolution Output File: %s************************",dumpFile);
         }
 */
-	printf("Log2Bin#\tLogSteps\tDihedral_Bending_Energy_3\tErr Bond_Harmonic_Energy_5\tErr    Potential_Energy_7\tErr        Delta_Backbone_9\tErr  Avg_hgt_11\tErr Avg_hgt_Sq_13\tErr      Avg_Slider_Pos_15\tErr	Delta_Slider_17\tErr\n");
+	printf("Log2Bin#\tLogSteps\tDihedral_Bending_Energy_3\tErr Bond_Harmonic_Energy_5\tErr    Potential_Energy_7\tErr        Delta_Backbone_9\tErr  Avg_hgt_11\tErr Avg_hgt_Sq_13\tErr      Avg_Slider_Pos_15\tErr	Delta_Slider_17\tErr\tNX_19\tNY_20\tEPSILON_21\tKAPPA_22\tk_bT_23\n");
 
         for(int i=0;i<log_bin_cnt;i++)
         {
-                        printf("%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
+                        printf("%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%.4f\n",i,step_log2[i]*PERIOD,jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
                 //fprintf(Foutput,"%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
         }
         //fclose(Foutput);
