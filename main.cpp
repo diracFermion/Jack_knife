@@ -21,7 +21,7 @@
 int DATA_COUNT,BIN_SIZE,JK_BIN_COUNT,RUNS;
 char parameter_file[1024],result_file[1024];
 FILE *Finput,*Fresult;
-int NX,NY,STEPS,PERIOD,STRIP_SIZE,DATA_DISCARD,LOGGING,LINEARBIN,LOG2BIN;
+int NX,NY,STEPS,PERIOD,DATA_DISCARD,LOGGING,LINEARBIN,LOG2BIN;
 double EPSILON,KAPPA,k_bT,DISP;
 
 int main( int argc, char **argv )
@@ -57,8 +57,6 @@ int main( int argc, char **argv )
   sscanf(parameter_file,"STEPS %d",&STEPS);
   fgets(parameter_file,1024,Finput);
   sscanf(parameter_file,"PERIOD %d",&PERIOD);
-  fgets(parameter_file,1024,Finput);
-  sscanf(parameter_file,"STRIPSIZE %d",&STRIP_SIZE);
   fgets(parameter_file,1024,Finput);
   sscanf(parameter_file,"EPSILON %lf",&EPSILON);
   fgets(parameter_file,1024,Finput);
