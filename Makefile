@@ -6,8 +6,8 @@ DEBUG = -g
 CXXFLAGS = -Wall -c $(DEBUG) -std=c++0x
 LFLAGS = $(DEBUG) -O2 -Wall 
 
-$JKTHERM : $(OBJS)
-	$(CXX) -o JKTHERM $(OBJS) $(LFLAGS)
+$JK : $(OBJS)
+	$(CXX) -o JK $(OBJS) $(LFLAGS)
 
 jack_knife.o : $(DEPS) jack_knife.h  jack_knife.cpp 
 	$(CXX) $(CXXFLAGS) jack_knife.cpp
@@ -16,5 +16,5 @@ main.o : $(DEPS) jack_knife.h main.cpp
 	$(CXX) $(CXXFLAGS) main.cpp
 
 clean:
-	\rm *.o *~ JKTHERM
+	\rm *.o *~ JK
 

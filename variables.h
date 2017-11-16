@@ -2,12 +2,13 @@
 #define MAXRUNS 501
 #define MAXMES  100000
 #define NUMOBSER 8
+#define PERIOD 10000
 
 /*      Observable variables    */
 extern int DATA_COUNT,BIN_SIZE,JK_BIN_COUNT,RUNS;
 extern char parameter_file[1024],result_file[1024];
 extern FILE *Finput,*Fresult;
-extern int NX,NY,STEPS,PERIOD,STRIP_SIZE,DATA_DISCARD,LOGGING,LINEARBIN,LOG2BIN;
+extern int NX,NY,STEPS,LOGGING,LOG2BIN;
 extern double EPSILON,KAPPA,k_bT,DISP;
 
 typedef struct

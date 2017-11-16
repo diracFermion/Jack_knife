@@ -42,8 +42,6 @@ char read_line[1024];
 int log2_single_observable_time_evolution(int data_size,int run_size)
 {
         FILE *Finput,*Foutput;
-	//printf("Time Evolution dumpFile inside function=%s\n",dumpFile);
-	//printf("Data_Size=%d,run_size=%d\n",data_size,run_size);
         int RUN,log_bin_cnt;
 	double raw_observable[NUMOBSER];
 	unsigned long long read_step;
@@ -58,7 +56,7 @@ int log2_single_observable_time_evolution(int data_size,int run_size)
                 //printf("Observable Input File:%s\n",observable_file);
 		Finput=fopen(observable_file,"r");
                 if (Finput==NULL)
-                        print_and_exit("**************Could NOT open HOOMD Observable.log file:%s*****************/n",observable_file);
+                        print_and_exit("**************Could NOT open analyze.log file:%s*****************/n",observable_file);
                 fgets(read_line, 1024,Finput); //Skip first line
                 for(int j=0;j<data_size;j++)
                 {
@@ -235,7 +233,7 @@ int log2_single_observable_time_evolution(int data_size,int run_size)
 
         for(int i=0;i<log_bin_cnt;i++)
         {
-                        printf("%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%.4f\n",i,step_log2[i]*PERIOD,jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
+                        printf("%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.4f\n",i,step_log2[i]*PERIOD,jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,k_bT);
                 //fprintf(Foutput,"%d\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\t%d\t%d\t%.1f\t%.1f\t%d\t%.4f\n",i,step_log2[i],jk_avg[0][i],error[0][i],jk_avg[1][i],error[1][i],jk_avg[2][i],error[2][i],jk_avg[3][i],error[3][i],jk_avg[4][i],error[4][i],jk_avg[5][i],error[5][i],jk_avg[6][i],error[6][i],jk_avg[7][i],error[7][i],NX,NY,EPSILON,KAPPA,STRIP_SIZE,k_bT);
         }
         //fclose(Foutput);
