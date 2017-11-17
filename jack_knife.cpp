@@ -52,7 +52,7 @@ int log2_single_observable_time_evolution(int data_size,int run_size)
    {     
 	for(RUN=0;RUN<JK_BIN_COUNT;RUN++)
         {
-                sprintf(observable_file,"../Sim_dump_ribbon/L%d/W%d/k%.1f/r%d/analyze_slider.log",NX,NY,KAPPA,RUN+1);
+                sprintf(observable_file,"../Sim_dump_ribbon/L%d/W%d/k%.1f/r%d/analyzeSlider.log",NX,NY,KAPPA,RUN+1);
                 //printf("Observable Input File:%s\n",observable_file);
 		Finput=fopen(observable_file,"r");
                 if (Finput==NULL)
